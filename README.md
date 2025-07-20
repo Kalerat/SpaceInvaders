@@ -70,19 +70,23 @@ The game can now be run directly from where the executable is built, as resource
 
 #### On Windows:
 ```bash
-# From the build directory
-.\Debug\SpaceInvaders.exe
+# Navigate to where the executable is located
+cd build\Debug
+.\SpaceInvaders.exe
+
 # OR if Release build:
-# .\Release\SpaceInvaders.exe
+cd build\Release
+.\SpaceInvaders.exe
 ```
 
 #### On Linux/macOS:
 ```bash
-# From the build directory
+# Navigate to the build directory
+cd build
 ./SpaceInvaders
 ```
 
-**Note**: The build process automatically copies the `resources/` folder to the executable directory, so the game will find all assets correctly.
+**Note**: The build process automatically copies the `resources/` folder to the same directory as the executable, so you need to run the game from that directory.
 
 ## Game Assets
 
@@ -157,21 +161,21 @@ SpaceInvaders/
 - **High score not saving**: Ensure the executable has write permissions in its directory
 
 ### Recommended Setup
-**You can now run the game directly from where it's built:**
+**Run the game from the executable's directory:**
 ```bash
-# Windows (from project root):
-.\build\Debug\SpaceInvaders.exe
+# Windows:
+cd build\Debug
+.\SpaceInvaders.exe
 
-# Or navigate to the build directory:
-cd build
-.\Debug\SpaceInvaders.exe
+# Or for Release build:
+cd build\Release  
+.\SpaceInvaders.exe
 
-# Linux/macOS (from project root):
-./build/SpaceInvaders
-
-# Or navigate to the build directory:
+# Linux/macOS:
 cd build
 ./SpaceInvaders
 ```
+
+**Alternative - You can also double-click the executable directly in File Explorer/Finder, as the resources are now in the same directory!**
 
 This project is for educational purposes. Raylib is licensed under the zlib/libpng license.
