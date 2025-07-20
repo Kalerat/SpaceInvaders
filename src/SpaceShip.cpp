@@ -7,7 +7,7 @@
 
 SpaceShip::SpaceShip() {
     // Load spaceship texture
-    texture = LoadTexture("../resources/spaceship.png");
+    texture = LoadTexture("resources/spaceship.png");
     if (texture.id == 0) {
         // Handle texture loading failure
         throw std::runtime_error("Failed to load spaceship texture");

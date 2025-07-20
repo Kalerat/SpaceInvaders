@@ -37,6 +37,14 @@ target_link_libraries(SpaceInvaders
 # Make SpaceInvaders find the <raylib.h> header (and others)
 target_include_directories(SpaceInvaders PUBLIC "${raylib_SOURCE_DIR}/src")
 
+# Copy resources to build directory so the executable can find them locally
+add_custom_command(TARGET SpaceInvaders POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/resources
+        $<TARGET_FILE_DIR:SpaceInvaders>/resources
+    COMMENT "Copying resources to build directory"
+)
+
 if (EMSCRIPTEN)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lidbfs.js -s USE_GLFW=3 --shell-file ${CMAKE_CURRENT_LIST_DIR}/web/minshell.html --preload-file ${CMAKE_CURRENT_LIST_DIR}/resources/@resources/ -s GL_ENABLE_GET_PROC_ADDRESS=1")
     set(CMAKE_EXECUTABLE_SUFFIX ".html") # This line is used to set your executable to build with the emscripten html template so that you can directly open it.

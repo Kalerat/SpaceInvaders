@@ -52,11 +52,11 @@ void Alien::Update(int direction) {
 
 void Alien::loadTextures() {
         for (int i = 0; i < 3; ++i) {
-            std::string texturePath = "../resources/alien_" + std::to_string(i) + ".png";
+            std::string texturePath = "resources/alien_" + std::to_string(i) + ".png";
             texture[i] = LoadTexture(texturePath.c_str());
             if (texture[i].id == 0) {
                 std::cout << "Failed to load: " << texturePath << ", falling back to alien_0.png\n";
-                texture[i] = LoadTexture("../resources/alien_0.png");
+                texture[i] = LoadTexture("resources/alien_0.png");
             }
         }
         loaded = true;
