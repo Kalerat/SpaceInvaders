@@ -28,7 +28,7 @@ A classic Space Invaders game implementation in C++ using the Raylib graphics li
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Kalerat/SpaceInvaders.git
 cd SpaceInvaders
 ```
 
