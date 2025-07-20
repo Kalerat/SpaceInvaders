@@ -33,9 +33,6 @@ Obstacle::Obstacle(Vector2 position, Color color)
         }
 }
 
-Obstacle::~Obstacle() {
-    // Destructor implementation
-}
 
 void Obstacle::Draw() {
     for (auto& block : blocks) {

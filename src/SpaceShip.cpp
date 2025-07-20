@@ -1,5 +1,6 @@
 #include "SpaceShip.h"
 #include "Laser.h"
+#include "SpaceInvaders.h"
 
 #include <raylib.h>
 #include <stdexcept>
@@ -29,6 +30,12 @@ void SpaceShip::Draw() {
 void SpaceShip::Move(float deltaX, float deltaY) {
     position.x += deltaX * speed * GetFrameTime();
     position.y += deltaY * speed * GetFrameTime();
+    
+    // Clamp position to respect UI boundaries (only top has offset)
+    if (position.x < 0) position.x = 0;
+    if (position.x > GetScreenWidth() - texture.width) position.x = GetScreenWidth() - texture.width;
+    if (position.y < UI_OFFSET_Y) position.y = UI_OFFSET_Y;
+    if (position.y > GetScreenHeight() - texture.height) position.y = GetScreenHeight() - texture.height;
 }
 void SpaceShip::Shoot() {
     lasers.push_back(std::make_unique<Laser>(Vector2{ position.x + texture.width / 2, position.y }, 300.0f));
@@ -43,4 +50,9 @@ void SpaceShip::UpdateLasers() {
             ++it; // Move to the next laser
         }
     }
+}
+
+void SpaceShip::Reset() {
+    position = { static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() - texture.height - 20) };
+    lasers.clear(); // Clear all lasers
 }

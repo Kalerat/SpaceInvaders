@@ -1,4 +1,5 @@
 #include "Laser.h"
+#include "SpaceInvaders.h"
 
 Laser::Laser(Vector2 position, float speed)
     : position(position), speed(speed), active(true) {
@@ -11,9 +12,13 @@ Laser::~Laser() {
 
 void Laser::Update() {
     if (active) {
-        position.y -= speed * GetFrameTime(); // Move the laser upwards
-        if (position.y < 0) {
-            active = false; // Deactivate the laser if it goes off-screen
+        position.y -= speed * GetFrameTime(); // Move the laser (positive speed = up, negative speed = down)
+        // Check boundaries based on direction
+        if (speed > 0 && position.y < UI_OFFSET_Y) {
+            active = false; // Deactivate upward laser if it goes above the UI boundary
+        }
+        else if (speed < 0 && position.y > GetScreenHeight()) {
+            active = false; // Deactivate downward laser if it goes below the screen
         }
     }
 }

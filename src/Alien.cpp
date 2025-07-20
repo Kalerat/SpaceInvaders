@@ -1,4 +1,5 @@
 #include "Alien.h"
+#include "SpaceInvaders.h"
 #include <iostream>
 
 
@@ -20,14 +21,18 @@ void Alien::Draw() {
     }
 }
 void Alien::Update(int direction) {
-    position.x += direction * 2.0f; // Move the alien left or right
-    if (position.x < 0) position.x = 0;
-    if (position.x > GetScreenWidth() - texture[type].width) position.x = GetScreenWidth() - texture[type].width;
-
+    // Move the alien down when direction changes
     if (lastDirection != direction) {
         lastDirection = direction;
         position.y += 10.0f; // Move the alien down when direction changes
     }
+    
+    // Move horizontally
+    position.x += direction * 2.0f; // Move the alien left or right
+    
+    // Clamp to screen boundaries
+    if (position.x < 0) position.x = 0;
+    if (position.x > GetScreenWidth() - texture[type].width) position.x = GetScreenWidth() - texture[type].width;
 
     // Check if the alien should shoot a laser
     if (GetRandomValue(0, 1000) < 1) { // 0.1% chance to shoot

@@ -10,6 +10,8 @@ public:
     Block(Vector2 position, Color color = YELLOW);
     ~Block();
 
+    Rectangle GetBounds() const { return { position.x, position.y, static_cast<float>(BLOCK_SIZE), static_cast<float>(BLOCK_SIZE) }; }
+
     void Draw();
 
 private:

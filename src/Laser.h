@@ -10,6 +10,7 @@ public:
     
     void Update();
     void Draw();
+    Rectangle GetBounds() const { return { position.x, position.y, 5.0f, 20.0f }; }
     
     bool active;
 private:
