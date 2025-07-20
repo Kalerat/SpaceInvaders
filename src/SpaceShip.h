@@ -17,7 +17,7 @@ public:
     void Move(float deltaX, float deltaY);
     void Shoot();
     void Reset();
-    void UpdateLasers(); // Update the state of all lasers
+    void UpdateLasers();
     Rectangle GetBounds() const { return { position.x, position.y, static_cast<float>(texture.width), static_cast<float>(texture.height) }; }
 
     private:

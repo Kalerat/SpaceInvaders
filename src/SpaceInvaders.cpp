@@ -9,17 +9,12 @@
 #include <algorithm>
 #include <fstream>
 
-SpaceInvaders::SpaceInvaders()
-{
-    // Constructor implementation
-}
 void SpaceInvaders::Init()
 {
-    // Initialization code for Space Invaders
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
     SetTargetFPS(GAME_FPS);
-    LoadHighScore(); // Load high score from file
-    spaceship = new SpaceShip(); // Create a new spaceship instance
+    LoadHighScore();
+    spaceship = new SpaceShip();
     createObstacles();
     createAliens();
 }
@@ -40,31 +35,32 @@ void SpaceInvaders::Update()
     HandleInput();
     if(!gameOver)
     {
-        // Update game state for Space Invaders
-        UpdateAliens();            // Update the aliens' positions
-        spaceship->UpdateLasers(); // Update the lasers shot by the spaceship
-        CheckCollisions();         // Check for collisions between lasers and aliens
+        // Update game state
+        UpdateAliens(); 
+        spaceship->UpdateLasers();
+        CheckCollisions();        
     }
 }
 void SpaceInvaders::Draw()
 {
-    spaceship->Draw(); // Draw the spaceship
+    spaceship->Draw();
     for (auto &obstacle : obstacles)
     {
-        obstacle.Draw(); // Draw each obstacle
+        obstacle.Draw();
     }
     for (auto &alien : aliens)
     {
-        alien.Draw(); // Draw each alien
+        alien.Draw();
     }
-    DrawUI(); // Draw the user interface elements
+    DrawUI();
 }
 void SpaceInvaders::Quit()
 {
-    // Cleanup code for Space Invaders
+    SaveHighScore();
+    delete spaceship;
+    CloseWindow();
 }
 
-// Handle user input
 void SpaceInvaders::HandleInput()
 {
     if (IsKeyDown(KEY_LEFT))
@@ -81,7 +77,7 @@ void SpaceInvaders::HandleInput()
     }
     if (IsKeyPressed(KEY_ENTER))
     {
-        ResetGame(); // Reset the game when 'R' is pressed
+        ResetGame();
 
     }
 }

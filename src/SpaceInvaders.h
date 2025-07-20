@@ -18,12 +18,10 @@
 
 class SpaceInvaders {
 public:
-    SpaceInvaders();
-
-    int lives = 3; // Number of lives for the spaceship
-    int score = 0; // Player's score
-    int highScore = 0; // High score
-    bool gameOver = false; // Flag to indicate if the game is over
+    int lives = 3;
+    int score = 0;
+    int highScore = 0;
+    bool gameOver = false;
 
 
     void Init();
